@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Collections;
+using System.Numerics;
 class CustomList<T> : IEnumerable<T>
 {
     private T[] memory = new T[1];
@@ -62,4 +63,37 @@ class CustomList<T> : IEnumerable<T>
             memory[index] = value;
         }
     }
+    public bool Contains(T item)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            if (EqualityComparer<T>.Default.Equals(item, memory[i]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public CustomList<T> Filter(Func<T, bool> condition)
+    {
+        CustomList<T> filteredList = new CustomList<T>();
+        for(int i = 0; i < count; i++)
+        {
+            if (condition(memory[i]))
+            {
+                filteredList.Add(memory[i]);
+            }
+        }
+        return filteredList;
+    }
+    public CustomList<T> Reverse()
+    {
+        CustomList<T> reversedList = new CustomList<T>();
+        for(int i = count - 1; i >= 0; i--)
+        {
+            reversedList.Add(memory[i]);
+        }
+        return reversedList;
+    }
 }
+
