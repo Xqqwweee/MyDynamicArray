@@ -1,16 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Numerics;
-
-T ListElementsSum<T>(CustomList<T> numbers) where T : INumber<T>
-{
-    T res = T.Zero;
-    foreach (T item in numbers)
-    {
-        res += item;
-    }
-    return res;
-}
 class CustomList<T> : IEnumerable<T>
 {
     private T[] memory = new T[1];
